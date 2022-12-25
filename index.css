@@ -1,0 +1,41 @@
+body {
+    background: black;
+
+    color: white;
+}
+
+
+#dungeon_display {
+    background: #111;
+
+    height: 300px;
+    width: 300px;
+
+    border: solid #CCC 2px;
+    border-radius: 10px;
+}
+
+
+#dungeon_display {
+    display: none;
+}
+
+#pseudo_dungeon_display {
+    display: inline-grid;
+}
+
+#pseudo_dungeon_display * {
+    display: block;
+
+    --size: 20px;
+    width: var(--size);
+    height: var(--size);
+
+    background: white;
+
+    border: solid #999 1px;
+    border-radius: 3px;
+
+    text-align: center;
+    color: black;
+}
