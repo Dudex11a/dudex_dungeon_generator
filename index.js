@@ -5,7 +5,8 @@ const dungeon_display = document.querySelector("#dungeon_display");
 const pseudo_dungeon_display = document.querySelector("#pseudo_dungeon_display");
 
 
-class GridItem {
+class MapTile {
+
     constructor (coords) {
         this.x = coords[0] + 1;
         this.y = coords[1] + 1;
@@ -25,52 +26,50 @@ class GridItem {
     toString = () => {
         return `${String(this.x)}-${String(this.y)}`
     }
+
 }
 
 
-function create_grid(size_x, size_y) {
-    let grid = [];
+class DungeonMap {
 
-    for (let y = 0; y < size_y; y++) {
-        let column = [];
-        for (let x = 0; x < size_x; x++) {
-            let grid_item = new GridItem([x, y]);
-            column.push(grid_item);
-        }
-        grid.push(column);
-    }
-
-    return grid;
-}
-
-
-function grid_to_document(grid = create_grid(100, 100)) {
-    for (let y in grid) {
-        const column = grid[y];
-        for (let x in column) {
-            const grid_item = column[x];
-            pseudo_dungeon_display.append(grid_item.create_element());
+    constructor (size_x, size_y) {
+        this.map_tiles = [];
+    
+        for (let y = 0; y < size_y; y++) {
+            let column = [];
+            for (let x = 0; x < size_x; x++) {
+                let map_tile = new MapTile([x, y]);
+                column.push(map_tile);
+            }
+            this.map_tiles.push(column);
         }
     }
+    
+    
+    to_element = () => {
+        let element = document.createElement("div");
+        element.classList.add("html_dungeon_display");
+
+        for (let y in this.map_tiles) {
+            const column = this.map_tiles[y];
+            for (let x in column) {
+                const map_tile = column[x];
+                element.append(map_tile.create_element());
+            }
+        }
+        return element;
+    }
+
 }
-
-
-// function create_ele_grid(size_x, size_y) {
-//     for (let y = 0; y < size_y; y++) {
-//         for (let x = 0; x < size_x; x++) {
-//             console.log(x, y);
-//             const grid_item = d();
-//             grid_item.innerText = "a";
-//             pseudo_dungeon_display.append(grid_item);
-//         }
-//     }
-// }
 
 
 // ===== Init =====
 
 function init() {
-    grid_to_document();
+    // Create dungeon_map
+    let dungeon_map = new DungeonMap(30, 30);
+    // Add dungeon_map
+    document.body.append(dungeon_map.to_element());
 }
 
 

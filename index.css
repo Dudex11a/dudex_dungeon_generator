@@ -20,11 +20,11 @@ body {
     display: none;
 }
 
-#pseudo_dungeon_display {
+.html_dungeon_display {
     display: inline-grid;
 }
 
-#pseudo_dungeon_display * {
+.html_dungeon_display * {
     display: block;
 
     --size: 20px;
