@@ -53,7 +53,7 @@ class Grid {
                 ele.append(grid_item.create_element());
             }
         }
-
+        
         return ele
     }
     
